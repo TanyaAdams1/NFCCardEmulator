@@ -158,6 +158,7 @@
     <string name="button_start_service">Start Service</string>
     <string name="button_stop_service">Stop Service</string>
     <string name="button_manage_file">Manage File</string>
+    <string name="network_switch_name">Use Network</string>
 
     <!--  AboutScreenFragment Class  -->
     <string name="explanation"> <b>This is an opensource application. <i>Free to use.</i></b> </string>

@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!--  declaration to use NFC  -->
-    <uses-permission android:name="android.permission.NFC" />
-
-    <!--  access to write external storage   -->
+    <!-- declaration to use NFC -->
+    <uses-permission android:name="android.permission.NFC" /> <!-- access to write external storage -->
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="28"/>
-
-    <!--  Requirement for the HCE hardware, the app only installs on phones that can run the HCE  -->
-    <uses-feature android:name="android.hardware.nfc.hce"
+        android:maxSdkVersion="28" /> <!-- Requirement for the HCE hardware, the app only installs on phones that can run the HCE -->
+    <uses-feature
+        android:name="android.hardware.nfc.hce"
         android:required="true" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -20,9 +18,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NFCCardEmulator">
+
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
+            android:exported="true"
             android:theme="@style/Theme.NFCCardEmulator.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,9 +29,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <!--   declaration the HCE service
+        <!--
+   declaration the HCE service
 
       name          : name of the Class that will implement the Service callbacks
       exported      : represents accessibility by other applications
@@ -45,9 +43,7 @@
       meta-data     : in order for the system to know which services to call based on which AID
                       the reader is trying to communicate with, we need to declare the `meta-data` tag
                       and point to an XML resource.
-
-      -->
-
+        -->
         <service
             android:name=".HostCardEmulatorService"
             android:exported="true"
@@ -60,7 +56,6 @@
                 android:name="android.nfc.cardemulation.host_apdu_service"
                 android:resource="@xml/apduservice" />
         </service>
-
     </application>
 
 </manifest>

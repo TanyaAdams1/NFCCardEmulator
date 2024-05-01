@@ -15,7 +15,7 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.258"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         app:layout_constraintVertical_bias="0.174" />
@@ -132,7 +132,7 @@
         app:layout_constraintVertical_bias="0.251" />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/network_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/network_switch_name"

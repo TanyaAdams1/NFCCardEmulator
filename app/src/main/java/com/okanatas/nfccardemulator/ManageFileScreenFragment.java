@@ -83,6 +83,8 @@ public class ManageFileScreenFragment extends Fragment {
         binding.buttonImport.setOnClickListener(this::fileImportManager);
         binding.buttonSetFile.setOnClickListener(this::useSelectedFile);
         binding.buttonDeleteFile.setOnClickListener(this::deleteSelectedFile);
+        binding.networkSwitch.setChecked(ResponseHandler.isUsingNetwork());
+        binding.networkSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> onNetworkSwitchToggled(isChecked));
 
         setFilesSpinner();
 
@@ -108,6 +110,25 @@ public class ManageFileScreenFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void onNetworkSwitchToggled(boolean isChecked) {
+        ResponseHandler.setUsingNetwork(isChecked);
+        if(isChecked){
+            binding.buttonBrowse.setEnabled(false);
+            binding.buttonImport.setEnabled(false);
+            binding.buttonSetFile.setEnabled(false);
+            binding.buttonDeleteFile.setEnabled(false);
+            binding.filesSpinner.setEnabled(false);
+            binding.textView3.setEnabled(false);
+        } else {
+            binding.buttonBrowse.setEnabled(true);
+            binding.buttonImport.setEnabled(true);
+            binding.buttonSetFile.setEnabled(true);
+            binding.buttonDeleteFile.setEnabled(true);
+            binding.filesSpinner.setEnabled(true);
+            binding.textView3.setEnabled(true);
+        }
     }
 
     /**

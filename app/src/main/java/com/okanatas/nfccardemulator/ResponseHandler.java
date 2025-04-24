@@ -1,5 +1,7 @@
 package com.okanatas.nfccardemulator;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import org.jetbrains.annotations.Contract;
@@ -17,6 +19,7 @@ public class ResponseHandler {
 
     private static final NetworkService networkService = new NetworkService();
     private static boolean isUsingNetwork = false;
+    private static float networkDelay = 0.0f;
 
     public static void setUsingNetwork(boolean isUsingNetwork) {
         ResponseHandler.isUsingNetwork = isUsingNetwork;
@@ -29,6 +32,13 @@ public class ResponseHandler {
 
     public static boolean isUsingNetwork() {
         return isUsingNetwork;
+    }
+
+    public static void setNetworkDelay(float networkDelay) {
+        ResponseHandler.networkDelay = networkDelay;
+    }
+    public static float getNetworkDelay() {
+        return networkDelay;
     }
 
 
@@ -120,6 +130,13 @@ public class ResponseHandler {
 
     public static Runnable getResponse(byte[] commandApdu, ResponseHandlerInterface responseHandler) {
         if (isUsingNetwork) {
+            Log.d("ResponseHandler", "Using network service");
+            Log.d("ResponseHandler", "Sleeping for: " + networkDelay + " seconds");
+            try {
+                Thread.sleep((long) (networkDelay * 1000));
+            } catch (InterruptedException e) {
+                Log.e("ResponseHandler", "Error while sleeping: " + e.getMessage());
+            }
             return getNetworkResponse(commandApdu, responseHandler);
         } else {
             return getFileHandlerResponse(commandApdu, responseHandler);

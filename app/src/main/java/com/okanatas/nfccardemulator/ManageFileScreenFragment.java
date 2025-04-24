@@ -115,6 +115,7 @@ public class ManageFileScreenFragment extends Fragment {
     private void onNetworkSwitchToggled(boolean isChecked) {
         ResponseHandler.setUsingNetwork(isChecked);
         if(isChecked){
+            ResponseHandler.setNetworkDelay(Float.parseFloat(binding.networkDelayBox.getText().toString()));
             binding.buttonBrowse.setEnabled(false);
             binding.buttonImport.setEnabled(false);
             binding.buttonSetFile.setEnabled(false);

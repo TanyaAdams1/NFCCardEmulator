@@ -5,7 +5,7 @@ import android.util.Log;
 import java.net.Socket;
 
 public class NetworkService {
-    private static final String host = "localhost";
+    private static final String host = "192.168.225.30";
     private static final int port = 12345;
     private Socket socket_;
     private boolean isNetworkServiceRunning = false;

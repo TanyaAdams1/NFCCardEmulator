@@ -44,6 +44,7 @@ public class HostCardEmulatorService extends HostApduService {
                 });
                 Thread sendResponse = new Thread(response);
                 sendResponse.start();
+                Log.d("HostCardEmulatorService", "Async response started");
                 return null;
             }
 
@@ -53,6 +54,7 @@ public class HostCardEmulatorService extends HostApduService {
 
         String commandApduInHex = (commandApdu != null) ? (Utils.toHexString(commandApdu)) : (InformationTransferManager.getStringResource(R.string.null_command));
         handleCommunicationMessage(commandApduInHex, Utils.toHexString(responseApdu));
+        Log.d("HostCardEmulatorService", "Response APDU: " + Utils.toHexString(responseApdu));
         return responseApdu;
     }
 
